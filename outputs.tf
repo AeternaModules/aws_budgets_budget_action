@@ -12,7 +12,7 @@ output "budgets_budget_actions_action_id" {
 }
 output "budgets_budget_actions_action_threshold" {
   description = "Map of action_threshold values across all budgets_budget_actions, keyed the same as var.budgets_budget_actions"
-  value       = { for k, v in aws_budgets_budget_action.budgets_budget_actions : k => v.action_threshold if v.action_threshold != null && length(v.action_threshold) > 0 }
+  value       = { for k, v in aws_budgets_budget_action.budgets_budget_actions : k => one(v.action_threshold) if v.action_threshold != null && length(v.action_threshold) > 0 }
 }
 output "budgets_budget_actions_action_type" {
   description = "Map of action_type values across all budgets_budget_actions, keyed the same as var.budgets_budget_actions"
@@ -32,7 +32,7 @@ output "budgets_budget_actions_budget_name" {
 }
 output "budgets_budget_actions_definition" {
   description = "Map of definition values across all budgets_budget_actions, keyed the same as var.budgets_budget_actions"
-  value       = { for k, v in aws_budgets_budget_action.budgets_budget_actions : k => v.definition if v.definition != null && length(v.definition) > 0 }
+  value       = { for k, v in aws_budgets_budget_action.budgets_budget_actions : k => one(v.definition) if v.definition != null && length(v.definition) > 0 }
 }
 output "budgets_budget_actions_execution_role_arn" {
   description = "Map of execution_role_arn values across all budgets_budget_actions, keyed the same as var.budgets_budget_actions"
